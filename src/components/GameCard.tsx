@@ -15,7 +15,11 @@ const GameCard = ({ game }: Props) => {
   const releaseTime = Date.parse(game.release_date);
   const now = Date.now();
   return (
-    <Card borderRadius={10} overflow="hidden">
+    <Card
+      width={{ sm: '350px', md: '350px', lg: '300px', xl: '280px' }}
+      borderRadius={10}
+      overflow="hidden"
+    >
       <Image src={game.thumbnail} alt={game.title} />
       <CardBody>
         <Heading fontSize="2xl" mb={2}>
