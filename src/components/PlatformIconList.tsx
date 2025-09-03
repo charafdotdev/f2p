@@ -27,13 +27,13 @@ const PlatformIconList = ({ platforms }: Props) => {
   return (
     <HStack>
       {platforms.map((platform) => (
-        <Tooltip key={platform.slug} label={platform.name} hasArrow>
-          <Icon
-            boxSize="5"
-            color="gray.500"
-            key={platform.slug}
-            as={iconMap[platform.slug]}
-          />
+        <Tooltip
+          key={platform.slug}
+          label={platform.name}
+          hasArrow
+          shouldWrapChildren
+        >
+          <Icon boxSize="5" color="gray.500" as={iconMap[platform.slug]} />
         </Tooltip>
       ))}
     </HStack>

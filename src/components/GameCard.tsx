@@ -1,4 +1,3 @@
-// GameCard.tsx
 import React from 'react';
 import { Game } from '../hooks/useGames';
 import { Card, CardBody, Heading, HStack, Image, Text } from '@chakra-ui/react';
@@ -15,7 +14,7 @@ const GameCard = ({ game }: Props) => {
   const releaseTime = Date.parse(game.release_date);
   const now = Date.now();
   return (
-    <Card>
+    <Card boxShadow="none">
       <Image src={game.thumbnail} alt={game.title} />
       <CardBody>
         <Heading fontSize="2xl" mb={2}>
