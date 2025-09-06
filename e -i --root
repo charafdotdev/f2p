@@ -1,0 +1,14 @@
+[33me48681d[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m docs: add README with project info.
+[33me458106[m Solving light mode cards border issues and game platform icons hoover bug.
+[33ma4a7157[m   Refactor - remove duplicated styles.
+[33m08869af[m Show loading skeletons.
+[33mdbd53aa[m Displaying new game badge.
+[33m467b8ad[m Building game cards.
+[33m047695b[m Create a custom hook to fetch the games.
+[33m3c20a89[m Fetch the games.
+[33me668e3a[m Build the color mode switch.
+[33mc222ec5[m Implement dark mode.
+[33m792fcaf[m Build a navbar.
+[33mc5789c1[m Build a responsive layout.
+[33mc38413b[m Install Chakra UI and correcting dependencies react version.
+[33ma9841f5[m Initial commit
