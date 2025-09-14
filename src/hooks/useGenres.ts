@@ -5,7 +5,7 @@ const useGenres = () => {
     { id: 1, name: 'MMORPG', slug: 'mmorpg' },
     { id: 2, name: 'Shooter', slug: 'shooter' },
     { id: 3, name: 'MOBA', slug: 'moba' },
-    { id: 4, name: 'Anime', slug: 'action' },
+    { id: 4, name: 'Anime', slug: 'anime' },
     { id: 5, name: 'Battle Royale', slug: 'battle-royale' },
     { id: 6, name: 'Strategy', slug: 'strategy' },
     { id: 7, name: 'Fantasy', slug: 'fantasy' },
