@@ -1,43 +1,51 @@
 // src/components/GenreList.tsx
 import React from 'react';
-import { VStack, Badge } from '@chakra-ui/react';
+import { VStack, Badge, Button } from '@chakra-ui/react';
 import useGenres from '../hooks/useGenres';
+import { Genre } from '../interfaces/Genre';
 
 // 🔽 Import only Lucide icons
 import {
+  Sword,
   Swords,
-  Target,
   Zap,
-  Drama,
-  MapPin,
   Brain,
   Castle,
-  Rocket,
-  Crown,
   Car,
+  Crown,
   Hand,
   Users,
   Trophy,
+  Grid3x3,
+  Flame,
+  Globe,
+  MessageCircle,
+  Crosshair,
 } from 'lucide-react';
 
-const GenreList = () => {
+interface Props {
+  onSelectGenre: (genre: Genre | null) => void;
+}
+
+const GenreList = ({ onSelectGenre }: Props) => {
   const { genres } = useGenres();
 
-  // 🔽 iconMap: maps genre slug → Lucide icon component
   const iconMap: { [key: string]: any } = {
-    mmorpg: Swords,
-    shooter: Target,
-    moba: Zap,
-    anime: Drama,
-    'battle-royale': MapPin,
-    strategy: Brain,
-    fantasy: Castle,
-    'sci-fi': Rocket,
-    'card-games': Crown,
-    racing: Car,
-    fighting: Hand,
-    social: Users,
-    sports: Trophy,
+    all: Grid3x3, // 🔲 All Games = overview
+    action: Sword, // ⚔️ Action = sword
+    arpg: Flame, // 🔥 ARPG = fiery combat
+    'battle-royale': Users, // 👥 Battle Royale = many players
+    'card-game': Crown,
+    fantasy: Castle, // 🏰 Fantasy = castle
+    fighting: Hand, // ✊ Fighting = fist
+    mmo: Globe, // 🌐 MMO = massive world
+    mmorpg: Swords, // ⚔️ MMORPG = crossed swords
+    moba: Zap, // ⚡ MOBA = high-energy
+    racing: Car, // 🚗 Racing = car
+    shooter: Crosshair, // 🎯 Shooter = crosshair
+    social: MessageCircle, // 💬 Social = chat/message
+    sports: Trophy, // 🏆 Sports = trophy
+    strategy: Brain, // 🧠 Strategy = brain
   };
 
   return (
@@ -46,13 +54,14 @@ const GenreList = () => {
         const IconComponent = iconMap[genre.slug];
 
         return (
-          <Badge
+          <Button
+            onClick={() => onSelectGenre(genre.id === 0 ? null : genre)}
+            variant="link"
             key={genre.id}
             display="flex"
             alignItems="center"
             gap={1}
             fontSize="md"
-            variant="subtle"
             colorScheme="purple"
             px={2}
             py={1}
@@ -60,7 +69,7 @@ const GenreList = () => {
           >
             {IconComponent && <IconComponent size={14} strokeWidth={1.5} />}
             {genre.name}
-          </Badge>
+          </Button>
         );
       })}
     </VStack>
