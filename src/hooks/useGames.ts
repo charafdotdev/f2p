@@ -69,7 +69,7 @@ const useGames = (selectedGenre: Genre | null) => {
           };
         });
 
-        // ✅ Filter only if selectedGenre exists
+        // Filter only if selectedGenre exists
         const filteredGames = selectedGenre
           ? processedGames.filter(
               (game) =>
@@ -87,7 +87,7 @@ const useGames = (selectedGenre: Genre | null) => {
       });
 
     return () => controller.abort();
-  }, [selectedGenre]); // ✅ Dependency added!
+  }, [selectedGenre]); // Dependency added!
 
   return { games, error, isLoading };
 };

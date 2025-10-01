@@ -4,7 +4,7 @@ import { VStack, Badge, Button } from '@chakra-ui/react';
 import useGenres from '../hooks/useGenres';
 import { Genre } from '../interfaces/Genre';
 
-// 🔽 Import only Lucide icons
+// Import only Lucide icons
 import {
   Sword,
   Swords,
@@ -25,27 +25,28 @@ import {
 
 interface Props {
   onSelectGenre: (genre: Genre | null) => void;
+  selectedGenre: Genre | null;
 }
 
-const GenreList = ({ onSelectGenre }: Props) => {
+const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
   const { genres } = useGenres();
 
   const iconMap: { [key: string]: any } = {
-    all: Grid3x3, // 🔲 All Games = overview
-    action: Sword, // ⚔️ Action = sword
-    arpg: Flame, // 🔥 ARPG = fiery combat
-    'battle-royale': Users, // 👥 Battle Royale = many players
+    all: Grid3x3,
+    action: Sword,
+    arpg: Flame,
+    'battle-royale': Users,
     'card-game': Crown,
-    fantasy: Castle, // 🏰 Fantasy = castle
-    fighting: Hand, // ✊ Fighting = fist
-    mmo: Globe, // 🌐 MMO = massive world
-    mmorpg: Swords, // ⚔️ MMORPG = crossed swords
-    moba: Zap, // ⚡ MOBA = high-energy
-    racing: Car, // 🚗 Racing = car
-    shooter: Crosshair, // 🎯 Shooter = crosshair
-    social: MessageCircle, // 💬 Social = chat/message
-    sports: Trophy, // 🏆 Sports = trophy
-    strategy: Brain, // 🧠 Strategy = brain
+    fantasy: Castle,
+    fighting: Hand,
+    mmo: Globe,
+    mmorpg: Swords,
+    moba: Zap,
+    racing: Car,
+    shooter: Crosshair,
+    social: MessageCircle,
+    sports: Trophy,
+    strategy: Brain,
   };
 
   return (
@@ -56,13 +57,14 @@ const GenreList = ({ onSelectGenre }: Props) => {
         return (
           <Button
             onClick={() => onSelectGenre(genre.id === 0 ? null : genre)}
+            fontWeight={genre.id === selectedGenre?.id ? 'bold' : 'normal'}
             variant="link"
             key={genre.id}
             display="flex"
             alignItems="center"
             gap={1}
             fontSize="md"
-            colorScheme="purple"
+            colorScheme={genre.id === selectedGenre?.id ? 'purple' : 'white'}
             px={2}
             py={1}
             borderRadius="full"
