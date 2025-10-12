@@ -27,7 +27,10 @@ interface ApiGame {
   genre: string;
 }
 
-const useGames = (selectedGenre: Genre | null) => {
+const useGames = (
+  selectedGenre: Genre | null,
+  selectedPlatform: Platform | null
+) => {
   const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState<string>('');
   const [isLoading, setLoading] = useState(false);
@@ -69,13 +72,21 @@ const useGames = (selectedGenre: Genre | null) => {
           };
         });
 
+        //1: Filter by genre
         // Filter only if selectedGenre exists
-        const filteredGames = selectedGenre
+        let filteredGames = selectedGenre
           ? processedGames.filter(
               (game) =>
                 game.genre.toLowerCase() === selectedGenre.name.toLowerCase()
             )
           : processedGames;
+
+        //2: Then filter by platform (if selected)
+        if (selectedPlatform) {
+          filteredGames = filteredGames.filter((game) =>
+            game.platform.some((p) => p.slug === selectedPlatform.slug)
+          );
+        }
 
         setGames(filteredGames);
         setLoading(false);
@@ -87,7 +98,8 @@ const useGames = (selectedGenre: Genre | null) => {
       });
 
     return () => controller.abort();
-  }, [selectedGenre]); // Dependency added!
+    //}, [selectedGenre]); // Dependency added!
+  }, [selectedGenre, selectedPlatform]);
 
   return { games, error, isLoading };
 };
