@@ -44,7 +44,10 @@ function App() {
       <GridItem area="main">
         {/* Platform Dropdown - shown everywhere */}
         <Box paddingX={{ base: 4, md: 10 }} marginTop={5}>
-          <PlatformSelector onSelectPlatform={setSelectedPlatform} />
+          <PlatformSelector
+            selectedPlatform={selectedPlatform}
+            onSelectPlatform={setSelectedPlatform}
+          />
         </Box>
 
         {/* GameGrid */}

@@ -14,14 +14,14 @@ import { Platform } from '../interfaces/Platform';
 
 interface Props {
   onSelectPlatform: (platform: Platform | null) => void;
+  selectedPlatform: Platform | null;
 }
 
-const PlatformSelector = ({ onSelectPlatform }: Props) => {
+const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
   const { platforms } = usePlatforms();
 
   return (
     <>
-      <FormLabel>Platform</FormLabel>
       <Menu>
         <MenuButton
           as={Button}
@@ -29,7 +29,7 @@ const PlatformSelector = ({ onSelectPlatform }: Props) => {
           variant="outline"
           textAlign="left"
         >
-          Platforms
+          {selectedPlatform?.name || 'Platforms'}
         </MenuButton>
         <MenuList>
           {/* "All Platforms" option */}
@@ -37,16 +37,9 @@ const PlatformSelector = ({ onSelectPlatform }: Props) => {
             All Platforms
           </MenuItem>
           {platforms.map((platform) => (
-            // <MenuItem
-            //   key={platform.slug}
-            //   onClick={() => onSelectPlatform(platform)}
-            // >
-            //   {platform.name}
-            // </MenuItem>
             <MenuItem
               key={platform.slug}
               onClick={() => {
-                console.log('Selected platform:', platform);
                 onSelectPlatform(platform);
               }}
             >
