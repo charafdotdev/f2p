@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import apiClient from '../services/api-client';
 import { CanceledError } from 'axios';
 import { Genre } from '../interfaces/Genre';
+import { GameQuery } from '../App';
 
 // Internal Game type
 export interface Game {
@@ -27,10 +28,7 @@ interface ApiGame {
   genre: string;
 }
 
-const useGames = (
-  selectedGenre: Genre | null,
-  selectedPlatform: Platform | null
-) => {
+const useGames = (gameQuery: GameQuery) => {
   const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState<string>('');
   const [isLoading, setLoading] = useState(false);
@@ -74,17 +72,20 @@ const useGames = (
 
         //1: Filter by genre
         // Filter only if selectedGenre exists
-        let filteredGames = selectedGenre
+
+        const genre = gameQuery.genre;
+        let filteredGames = genre
           ? processedGames.filter(
-              (game) =>
-                game.genre.toLowerCase() === selectedGenre.name.toLowerCase()
+              (game) => game.genre.toLowerCase() === genre.name.toLowerCase()
             )
           : processedGames;
 
         //2: Then filter by platform (if selected)
-        if (selectedPlatform) {
+
+        const platform = gameQuery.platform;
+        if (platform) {
           filteredGames = filteredGames.filter((game) =>
-            game.platform.some((p) => p.slug === selectedPlatform.slug)
+            game.platform.some((p) => p.slug === platform.slug)
           );
         }
 
@@ -98,8 +99,7 @@ const useGames = (
       });
 
     return () => controller.abort();
-    //}, [selectedGenre]); // Dependency added!
-  }, [selectedGenre, selectedPlatform]);
+  }, [gameQuery.genre, gameQuery.platform]);
 
   return { games, error, isLoading };
 };
