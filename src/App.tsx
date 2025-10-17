@@ -20,7 +20,8 @@ function App() {
         base: `"nav" "main"`,
         lg: `"nav nav" "aside main"`, // aside = sidebar, main = games + platform dropdown
       }}
-      height="100vh"
+      // Navbar height issues on single games genres
+      //height="100vh"
       templateColumns={{
         lg: '200px 1fr', // Sidebar fixed width, main takes rest
       }}
