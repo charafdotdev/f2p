@@ -12,12 +12,14 @@ import SortSelector from './components/SortSelector';
 export interface GameQuery {
   genre: Genre | null;
   platform: Platform | null;
+  sortOrder: string;
 }
 
 function App() {
   const [gameQuery, setGameQuery] = useState<GameQuery>({
     genre: null,
     platform: null,
+    sortOrder: 'relevance',
   });
 
   return (
@@ -58,7 +60,12 @@ function App() {
                 setGameQuery({ ...gameQuery, platform })
               }
             />
-            <SortSelector />
+            <SortSelector
+              selectedSortOrder={gameQuery.sortOrder}
+              onSelectSortOrder={(value) =>
+                setGameQuery({ ...gameQuery, sortOrder: value })
+              }
+            />
           </HStack>
         </Box>
 

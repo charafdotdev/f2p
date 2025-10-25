@@ -89,7 +89,28 @@ const useGames = (gameQuery: GameQuery) => {
           );
         }
 
-        setGames(filteredGames);
+        // Create a copy and sort if needed
+        let sortedGames = [...filteredGames]; // ← Copy array (don't mutate)
+
+        switch (gameQuery.sortOrder) {
+          case 'name':
+            sortedGames.sort((a, b) => a.title.localeCompare(b.title));
+            break;
+          case 'release-date':
+            sortedGames.sort(
+              (a, b) =>
+                new Date(b.release_date).getTime() -
+                new Date(a.release_date).getTime()
+            );
+            break;
+          default:
+            // 'relevance' or unknown → leave as-is
+            break;
+        }
+
+        setGames(sortedGames); // Now set the sorted list
+
+        //setGames(filteredGames);
         setLoading(false);
       })
       .catch((err) => {
@@ -99,7 +120,7 @@ const useGames = (gameQuery: GameQuery) => {
       });
 
     return () => controller.abort();
-  }, [gameQuery.genre, gameQuery.platform]);
+  }, [gameQuery.genre, gameQuery.platform, gameQuery.sortOrder]);
 
   return { games, error, isLoading };
 };

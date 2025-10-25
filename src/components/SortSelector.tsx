@@ -1,7 +1,21 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
 import { BsChevronDown } from 'react-icons/bs';
+import { sortOptions } from '../utils/sortOptions';
 
-const SortSelector = () => {
+interface Props {
+  selectedSortOrder: string;
+  onSelectSortOrder: (value: string) => void;
+}
+
+const SortSelector = ({ onSelectSortOrder, selectedSortOrder }: Props) => {
+  // getting the label name for current selection
+  const getCurrentLabel = () => {
+    return (
+      sortOptions.find((opt) => opt.value === selectedSortOrder)?.label ||
+      'Relevance'
+    );
+  };
+
   return (
     <>
       <Menu>
@@ -11,16 +25,18 @@ const SortSelector = () => {
           variant="outline"
           textAlign="left"
         >
-          Order by: Relevance
+          Order by: {getCurrentLabel()}
         </MenuButton>
         <MenuList>
           {/* "All Platforms" option */}
-          <MenuItem>Relevance</MenuItem>
-          <MenuItem>Date added</MenuItem>
-          <MenuItem>Name</MenuItem>
-          <MenuItem>Release date</MenuItem>
-          <MenuItem>Popularity</MenuItem>
-          <MenuItem>Average rating</MenuItem>
+          {sortOptions.map((option) => (
+            <MenuItem
+              key={option.value}
+              onClick={() => onSelectSortOrder(option.value)}
+            >
+              {option.label}
+            </MenuItem>
+          ))}
         </MenuList>
       </Menu>
     </>
