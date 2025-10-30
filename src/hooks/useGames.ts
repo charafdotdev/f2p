@@ -104,8 +104,16 @@ const useGames = (gameQuery: GameQuery) => {
             );
             break;
           default:
-            // 'relevance' or unknown → leave as-is
             break;
+        }
+
+        //3: Then filter by search text (if any)
+        if (gameQuery.searchText) {
+          const query = gameQuery.searchText.toLowerCase();
+
+          sortedGames = sortedGames.filter((game) =>
+            game.title.toLowerCase().includes(query)
+          );
         }
 
         setGames(sortedGames); // Now set the sorted list
@@ -120,7 +128,12 @@ const useGames = (gameQuery: GameQuery) => {
       });
 
     return () => controller.abort();
-  }, [gameQuery.genre, gameQuery.platform, gameQuery.sortOrder]);
+  }, [
+    gameQuery.genre,
+    gameQuery.platform,
+    gameQuery.sortOrder,
+    gameQuery.searchText,
+  ]);
 
   return { games, error, isLoading };
 };
