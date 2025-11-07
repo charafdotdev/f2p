@@ -11,7 +11,7 @@ export interface Game {
   thumbnail: string;
   platform: Platform[];
   release_date: string;
-  genre: string; // Make sure this is here
+  genre: string;
 }
 
 export interface Platform {
@@ -40,7 +40,7 @@ const useGames = (gameQuery: GameQuery) => {
     apiClient
       .get<ApiGame[]>('/games', { signal: controller.signal })
       .then((res) => {
-        // Transform API games to our format
+        // Transform API games to the needed format
         const processedGames = res.data.map((apiGame) => {
           const platformStrings = apiGame.platform
             .split(', ')

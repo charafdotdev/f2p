@@ -8,6 +8,7 @@ import { Genre } from './interfaces/Genre';
 import PlatformSelector from './components/PlatformSelector';
 import { Platform } from './interfaces/Platform';
 import SortSelector from './components/SortSelector';
+import GameHeading from './components/GameHeading';
 
 export interface GameQuery {
   genre: Genre | null;
@@ -57,6 +58,7 @@ function App() {
       <GridItem area="main">
         {/* Platform Dropdown - shown everywhere */}
         <Box paddingX={{ base: 4, md: 10 }} marginTop={5}>
+          <GameHeading gameQuery={gameQuery} />
           <HStack spacing={5}>
             <PlatformSelector
               selectedPlatform={gameQuery.platform}
