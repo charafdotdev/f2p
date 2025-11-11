@@ -14,7 +14,16 @@ const GameCard = ({ game }: Props) => {
   const releaseTime = Date.parse(game.release_date);
   const now = Date.now();
   return (
-    <Card boxShadow="none">
+    <Card
+      borderRadius={10}
+      overflow="hidden"
+      boxShadow="md" // ← This is the fix
+      _hover={{
+        boxShadow: 'lg',
+        transform: 'translateY(-4px)',
+      }}
+      transition="all 0.2s"
+    >
       <Image src={game.thumbnail} alt={game.title} />
       <CardBody>
         <Heading fontSize="2xl" mb={2}>
