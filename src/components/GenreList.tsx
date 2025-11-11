@@ -1,6 +1,6 @@
 // src/components/GenreList.tsx
 import React from 'react';
-import { VStack, Badge, Button } from '@chakra-ui/react';
+import { VStack, Badge, Button, Heading } from '@chakra-ui/react';
 import useGenres from '../hooks/useGenres';
 import { Genre } from '../interfaces/Genre';
 
@@ -51,11 +51,13 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
 
   return (
     <VStack wrap="wrap" spacing={3} mb={4}>
+      <Heading fontSize="2xl">Genres</Heading>;
       {genres.map((genre) => {
         const IconComponent = iconMap[genre.slug];
-
         return (
           <Button
+            whiteSpace="normal"
+            textAlign="left"
             onClick={() => onSelectGenre(genre.id === 0 ? null : genre)}
             fontWeight={genre.id === selectedGenre?.id ? 'bold' : 'normal'}
             variant="link"
