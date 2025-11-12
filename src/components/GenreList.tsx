@@ -56,17 +56,17 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
         const IconComponent = iconMap[genre.slug];
         return (
           <Button
-            whiteSpace="normal"
-            textAlign="left"
             onClick={() => onSelectGenre(genre.id === 0 ? null : genre)}
             fontWeight={genre.id === selectedGenre?.id ? 'bold' : 'normal'}
-            variant="link"
+            colorScheme={genre.id === selectedGenre?.id ? 'purple' : 'white'}
+            whiteSpace="normal"
             key={genre.id}
-            display="flex"
+            variant="link"
+            textAlign="left"
             alignItems="center"
+            display="flex"
             gap={1}
             fontSize="md"
-            colorScheme={genre.id === selectedGenre?.id ? 'purple' : 'white'}
             px={2}
             py={1}
             borderRadius="full"
