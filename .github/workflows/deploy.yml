@@ -23,6 +23,12 @@ jobs:
       - name: Build Vite project
         run: npm run build
 
+      - name: Debug Secrets
+        run: |
+          echo "HOST raw:'${{ secrets.SERVER_HOST }}'"
+          echo "HOST length:"
+          echo -n "${{ secrets.SERVER_HOST }}" | wc -c
+
       - name: Setup SSH key
         run: |
           mkdir -p ~/.ssh
