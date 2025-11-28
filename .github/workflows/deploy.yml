@@ -26,8 +26,11 @@ jobs:
       - name: Debug Secrets
         run: |
           echo "HOST raw:'${{ secrets.SERVER_HOST }}'"
+          echo "USER raw:'${{ secrets.SERVER_USER }}'"
           echo "HOST length:"
           echo -n "${{ secrets.SERVER_HOST }}" | wc -c
+          echo "USER length:"
+          echo -n "${{ secrets.SERVER_USER }}" | wc -c
 
       - name: Setup SSH key
         run: |
