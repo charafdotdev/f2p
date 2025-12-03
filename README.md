@@ -5,37 +5,35 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
 ![Chakra UI](https://img.shields.io/badge/Chakra%20UI-319795?logo=chakraui&logoColor=white)
 
+**Live Demo** → https://f2p.charaf.dev
+
 A beautiful, responsive explorer for **free-to-play** games — powered by the [FreeToGame API](https://www.freetogame.com/api).
 
 ![F2P Screenshot](https://raw.githubusercontent.com/charafdotdev/f2p/main/public/screenshot.png)
 
-> Built while following Mosh’s React course — then taken way further with custom hooks, better UX, CI/CD, and production deployment.
-
-### Live Demo
-
-https://f2p.charaf.dev
+> Built during Mosh’s React course — then upgraded with custom hooks, perfect UI polish, **full CI/CD pipeline**, and **production deployment** with a custom PHP proxy.
 
 ---
 
 ## Features
 
-- Responsive game grid with perfect shadows & hover lift
-- Dynamic platform icons (PC, Browser) with tooltips
-- “NEW” badge for games released in the last 6 months
-- Full light/dark mode support (Chakra UI)
-- Infinite scroll / pagination ready
-- Zero API key needed (FreeToGame API)
-- Automatic deployment on every push
+- Responsive game grid with hover lift & perfect shadows
+- Platform icons + tooltips
+- “NEW” badge for recent releases
+- Full light/dark mode support
+- Custom `proxy.php` to bypass CORS (included in build)
+- GitHub Actions + rsync → auto-deploy to VPS on every push
+- No manual FTP ever again
 
 ---
 
 ## Tech Stack
 
-- **React** + **TypeScript** + **Vite**
-- **Chakra UI** – styling & dark mode
-- **Axios** – data fetching
-- **GitHub Actions** – CI/CD + auto-deploy to VPS
-- Hosted on **LiteSpeed / CyberPanel** VPS
+- React + TypeScript + Vite
+- Chakra UI (styling & dark mode)
+- Axios
+- GitHub Actions (CI/CD)
+- Hosted on LiteSpeed / CyberPanel VPS
 
 ---
 

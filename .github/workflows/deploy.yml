@@ -3,19 +3,20 @@ name: Deploy to VPS
 on:
   push:
     branches: ['main']
+  workflow_dispatch: # ← Optional: allows manual trigger from GitHub UI
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4 # ← Updated to v4 (latest)
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4 # ← Updated to v4
         with:
           node-version: 20
+          cache: 'npm' # ← Speeds up installs
 
       - name: Install dependencies
         run: npm ci
@@ -23,14 +24,9 @@ jobs:
       - name: Build Vite project
         run: npm run build
 
-      - name: Debug Secrets
-        run: |
-          echo "HOST raw:'${{ secrets.SERVER_HOST }}'"
-          echo "USER raw:'${{ secrets.SERVER_USER }}'"
-          echo "HOST length:"
-          echo -n "${{ secrets.SERVER_HOST }}" | wc -c
-          echo "USER length:"
-          echo -n "${{ secrets.SERVER_USER }}" | wc -c
+      # Optional: Remove debug secrets step in production (security)
+      # - name: Debug Secrets
+      #   run: ...
 
       - name: Setup SSH key
         run: |
@@ -44,7 +40,7 @@ jobs:
           ssh -o StrictHostKeyChecking=yes \
               -i ~/.ssh/id_ed25519 \
               ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} \
-              "echo 'SSH OK from GitHub Actions as $(whoami)'"
+              "echo 'SSH OK – Deploying F2P Games Explorer'"
 
       - name: Deploy with rsync
         run: |
