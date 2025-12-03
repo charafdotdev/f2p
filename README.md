@@ -1,36 +1,49 @@
 # F2P – Free-to-Play Games Explorer
 
-🎮 A React + TypeScript app that explores free-to-play games from the [FreeToGame API](https://www.freetogame.com/api).
+![Deploy to VPS](https://github.com/charafdotdev/f2p/actions/workflows/deploy.yml/badge.svg)
+![React](https://img.shields.io/badge/React-18.2.0-61DAFB?logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+![Chakra UI](https://img.shields.io/badge/Chakra%20UI-319795?logo=chakraui&logoColor=white)
+
+A beautiful, responsive explorer for **free-to-play** games — powered by the [FreeToGame API](https://www.freetogame.com/api).
 
 ![F2P Screenshot](https://raw.githubusercontent.com/charafdotdev/f2p/main/public/screenshot.png)
 
-> Built while learning React, TypeScript, and Chakra UI — with personal improvements beyond the course.
+> Built while following Mosh’s React course — then taken way further with custom hooks, better UX, CI/CD, and production deployment.
+
+### Live Demo
+
+https://f2p.charaf.dev
 
 ---
 
-## 🔧 Features
+## Features
 
-- ✅ Responsive game grid
-- ✅ Dynamic platform icons (PC, Web)
-- ✅ "NEW" badge based on release date (6 months)
-- ✅ Hover tooltips for platform names
-- ✅ Clean, accessible UI with light/dark mode support
-- ✅ Custom hooks for data fetching and transformation
-
----
-
-## 🚀 Tech Stack
-
-- **React** + **TypeScript**
-- **Chakra UI** – for components and theming
-- **Axios** – for API requests
-- **FreeToGame API** – free, no key required
+- Responsive game grid with perfect shadows & hover lift
+- Dynamic platform icons (PC, Browser) with tooltips
+- “NEW” badge for games released in the last 6 months
+- Full light/dark mode support (Chakra UI)
+- Infinite scroll / pagination ready
+- Zero API key needed (FreeToGame API)
+- Automatic deployment on every push
 
 ---
 
-## 🖥️ Run Locally
+## Tech Stack
 
-1. Clone the repo:
-   ```bash
-   git clone https://github.com/charafdotdev/f2p.git
-   ```
+- **React** + **TypeScript** + **Vite**
+- **Chakra UI** – styling & dark mode
+- **Axios** – data fetching
+- **GitHub Actions** – CI/CD + auto-deploy to VPS
+- Hosted on **LiteSpeed / CyberPanel** VPS
+
+---
+
+## Run Locally
+
+```bash
+git clone https://github.com/charafdotdev/f2p.git
+cd f2p
+npm install
+npm run dev
+```
